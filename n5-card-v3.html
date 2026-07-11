@@ -60,19 +60,9 @@ Wed Apr 30 11:17:13 AM UTC 2025
     <!-- Definitions -->
     {{#VocabDef}}
     <section class="headword_section">
-      <div class="vocab" id="tsc__headword_section">
-        <div class="reading" id="pitchpattern" lang="ja">
-          {{VocabPitchPattern}}
-          <!-- If VocabPitchPattern is empty, show VocabFurigana. -->
-          {{^VocabPitchPattern}}{{text:kana:VocabFurigana}}{{/VocabPitchPattern}}
-        </div>
-        {{#VocabPitchNum}}
-        <span class="tags" id="pitchnum">{{text:VocabPitchNum}}</span>
-        {{/VocabPitchNum}}
-        <!-- Word in kanji -->
-        {{#VocabKanji}}
-        <div class="target_word" lang="ja">{{text:kanji:VocabKanji}}</div>
-        {{/VocabKanji}}
+      <!-- <div class="vocab" id="tsc__headword_section"> -->
+      <div class="vocab-furigana" style="font-size: 160%; text-align: center">
+        {{furigana:VocabFurigana}}
       </div>
       <div class="definitions">{{edit:furigana:VocabDef}}</div>
     </section>
