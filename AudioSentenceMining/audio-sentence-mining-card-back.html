@@ -1,0 +1,18 @@
+{{FrontSide}}
+
+<hr id="answer" />
+
+{{Sentence}}
+<br /><br />
+
+{{#Definition}}
+<div class="ensentence" lang="en">{{hint:Definition}}</div>
+{{/Definition}}
+
+<script>
+  // Find the hint link inside our container and change its text
+  var hintLink = document.querySelector(".ensentence > a");
+  if (hintLink) {
+    hintLink.innerHTML = "Reveal English";
+  }
+</script>
