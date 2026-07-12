@@ -1,0 +1,13 @@
+{{FullImage}} <br /><br />
+
+{{#English}}
+<div class="ensentence" lang="en">{{hint:English}}</div>
+{{/English}}
+
+<script>
+  // Find the hint link inside our container and change its text
+  var hintLink = document.querySelector(".ensentence > a");
+  if (hintLink) {
+    hintLink.innerHTML = "Reveal English";
+  }
+</script>
