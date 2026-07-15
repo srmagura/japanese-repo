@@ -22,7 +22,7 @@ Wed Apr 30 11:17:13 AM UTC 2025
   <!-- Front side. This tag is hidden on the back. -->
   <div class="tsc__front_side">
     <div class="sent-center" id="tsc" visible="true">
-      <div class="jpsentence" lang="ja">
+      <div class="jpsentence" lang="ja" style="line-height: 2">
         {{edit:furigana:SentKanji}}
         <!-- If SentKanji is empty, show SentFurigana with furigana hidden. -->
         {{^SentKanji}}
@@ -33,7 +33,9 @@ Wed Apr 30 11:17:13 AM UTC 2025
 
     <div class="sent-center" id="jp1k-tsc" visible="false">
       <!-- JP1K mode is active only if note has been tagged as jp1k. -->
-      <div class="jpsentence" lang="ja">{{furigana:SentFurigana}}</div>
+      <div class="jpsentence" lang="ja" style="line-height: 2">
+        {{furigana:SentFurigana}}
+      </div>
       <br />
       <button
         type="button"
@@ -48,7 +50,7 @@ Wed Apr 30 11:17:13 AM UTC 2025
   <!-- Back side. This tag is hidden on the front. -->
   <div class="tsc__back_side">
     <div class="sent-center">
-      <div class="jpsentence" lang="ja">
+      <div class="jpsentence" lang="ja" style="line-height: 2">
         <div class="background">
           <!-- Only RT tags are drawn on the background. -->
           {{furigana:SentFurigana}}
@@ -148,8 +150,7 @@ Wed Apr 30 11:17:13 AM UTC 2025
     "use strict";
     const IMG_ON_FRONT_TAG = "imageonfront";
     const HIDDEN_TAGS = new Set([IMG_ON_FRONT_TAG, "tolearn", "marked"]);
-    const JP1K_TAG = "jp1k";
-    const IS_JP1K_MODE = `{{Tags}}`.toLowerCase().split(" ").includes(JP1K_TAG);
+    const IS_JP1K_MODE = true;
 
     function is_back_revealed() {
       return Boolean(document.querySelector(".tsc__answer_revealed"));
@@ -366,7 +367,7 @@ Wed Apr 30 11:17:13 AM UTC 2025
         console.log("Initializing the front side...");
         toggle_visible_images_on_front();
         toggle_jp1k_mode();
-        /* When in the JP1K mode, press "r" to reveal furigana for all words. */
+        /* When in the JP1K mode, press "p" to reveal furigana for all words. */
         listen_to_key("KeyR", toggle_jp1k_furigana);
         setup_reveal_furigana_button_listener();
       }
