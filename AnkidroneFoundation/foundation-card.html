@@ -4,15 +4,15 @@ Wed Apr 30 11:17:13 AM UTC 2025
 -->
 
 <div class="wrap">
-  <header>
+  <!-- <header>
     {{#Focus}}
     <div class="tags">{{Focus}}</div>
     {{/Focus}}
-    <!-- Tags -->
+    <-- Tags ->
     {{#Tags}}
     <div class="tags">{{Tags}}</div>
     {{/Tags}}
-  </header>
+  </header> -->
 
   <!-- Used to print JS-related errors to the user. -->
   <div id="error_report">
@@ -150,7 +150,8 @@ Wed Apr 30 11:17:13 AM UTC 2025
     "use strict";
     const IMG_ON_FRONT_TAG = "imageonfront";
     const HIDDEN_TAGS = new Set([IMG_ON_FRONT_TAG, "tolearn", "marked"]);
-    const IS_JP1K_MODE = true;
+    const JP1K_TAG = "jp1k";
+    const IS_JP1K_MODE = `{{Tags}}`.toLowerCase().split(" ").includes(JP1K_TAG);
 
     function is_back_revealed() {
       return Boolean(document.querySelector(".tsc__answer_revealed"));
@@ -259,8 +260,9 @@ Wed Apr 30 11:17:13 AM UTC 2025
             */
       const tsc_element = document.querySelector("#tsc");
       const jp1k_element = document.querySelector("#jp1k-tsc");
-      jp1k_element.setAttribute("visible", IS_JP1K_MODE);
-      tsc_element.setAttribute("visible", !IS_JP1K_MODE);
+      const mode = true;
+      jp1k_element.setAttribute("visible", mode);
+      tsc_element.setAttribute("visible", !mode);
     }
 
     function toggle_jp1k_furigana() {
