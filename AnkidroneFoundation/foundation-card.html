@@ -253,6 +253,13 @@ Wed Apr 30 11:17:13 AM UTC 2025
       }
     }
 
+    function set_jp1k_background_color() {
+      /* If the note has been tagged as jp1k, highlight the card with a light blue background. */
+      if (IS_JP1K_MODE) {
+        document.body.style.backgroundColor = "#EDF7FC"; // light blue
+      }
+    }
+
     function toggle_jp1k_mode() {
       /*
             If the user has added the "JP1K" tag to the note,
@@ -267,11 +274,11 @@ Wed Apr 30 11:17:13 AM UTC 2025
 
     function toggle_jp1k_furigana() {
       /* Flip visibilty of all RT tags. */
-      if (IS_JP1K_MODE) {
-        for (const element of document.querySelectorAll("#jp1k-tsc ruby rt")) {
-          element.style.visibility = !element.style.visibility ? "visible" : "";
-        }
+      //if (IS_JP1K_MODE) {
+      for (const element of document.querySelectorAll("#jp1k-tsc ruby rt")) {
+        element.style.visibility = !element.style.visibility ? "visible" : "";
       }
+      //}
     }
 
     function click_all_hints() {
@@ -355,6 +362,7 @@ Wed Apr 30 11:17:13 AM UTC 2025
       /* Functions that run on both front and back. */
       separate_tags_list();
       hide_images_details_on_mobile();
+      set_jp1k_background_color();
       listen_to_key("KeyX", click_all_hints); // Press "x" to reveal all hints.
 
       if (isBack) {
