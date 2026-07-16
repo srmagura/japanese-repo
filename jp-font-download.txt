@@ -1,0 +1,6 @@
+Noto Serif JP
+https://fonts.google.com/noto/specimen/Noto+Serif+JP?subset=japanese
+
+Add to CSS for all anki card types that I made:
+
+font-family: "Noto Serif JP Light";
