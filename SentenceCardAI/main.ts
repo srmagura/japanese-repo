@@ -53,7 +53,6 @@ console.log(sentenceData);
 const anki = new YankiConnect();
 
 try {
-  // 2. Create a new card (note) using the strongly-typed note object
   const noteId = await anki.note.addNote({
     note: {
       deckName: DECK_NAME,
