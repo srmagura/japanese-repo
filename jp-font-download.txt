@@ -1,3 +1,5 @@
+**This probably isn't actually necessary.*
+
 Noto Serif JP
 https://fonts.google.com/noto/specimen/Noto+Serif+JP?subset=japanese
 
