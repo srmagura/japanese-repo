@@ -25,3 +25,25 @@ const interaction = await ai.interactions.create({
 });
 
 console.log(interaction.output_text);
+
+if (!interaction.output_text) {
+  throw new Error('ERROR: No output_text!');
+}
+
+interface SentenceData {
+  sentKanji: string;
+  sentFurigana: string;
+  sentEng: string;
+}
+
+const [sentKanji, sentFurigana, sentEng] = interaction.output_text
+  .split('\n')
+  .map((line) => line.trim());
+
+if (!sentKanji || !sentFurigana || !sentEng) {
+  throw new Error('ERROR: Failed to parse output_text!');
+}
+
+const sentenceData: SentenceData = { sentKanji, sentFurigana, sentEng };
+
+console.log(sentenceData);
