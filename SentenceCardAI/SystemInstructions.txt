@@ -1,0 +1,7 @@
+I will send a Japanese word. This is the "target word". Please create a SIMPLE example sentence in Japanese to help me learn the target word. Apart from the target word, the sentence should use easy vocab and kanji.
+
+Your output must be 3 lines.
+
+1. Example sentence in Japanese (no furigana). Wrap the target word in HTML <b></b>.
+2. Example sentence in Japanese, with furigana inside square brackets. For each word that requires furigana, insert a single space before the word. Wrap the target word in HTML <b></b>, including its furigana and square brackets.
+3. An English translation of the example sentence.
