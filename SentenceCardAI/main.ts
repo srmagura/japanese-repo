@@ -2,6 +2,10 @@ import { GoogleGenAI } from '@google/genai';
 import { readFile } from 'fs/promises';
 import os from 'os';
 import path from 'path';
+import { YankiConnect } from 'yanki-connect';
+
+const AI_MODEL = 'gemini-3.5-flash';
+const DECK_NAME = 'Sentence Mining::Text Sentence Mining';
 
 interface ApiKeys {
   gemini: string;
@@ -18,13 +22,11 @@ const ai = new GoogleGenAI({
 });
 
 const interaction = await ai.interactions.create({
-  model: 'gemini-3.5-flash',
+  model: AI_MODEL,
   system_instruction: systemInstructions,
   input: '学校',
   // TODO change thinking level? https://ai.google.dev/gemini-api/docs/text-generation
 });
-
-console.log(interaction.output_text);
 
 if (!interaction.output_text) {
   throw new Error('ERROR: No output_text!');
@@ -47,3 +49,26 @@ if (!sentKanji || !sentFurigana || !sentEng) {
 const sentenceData: SentenceData = { sentKanji, sentFurigana, sentEng };
 
 console.log(sentenceData);
+
+const anki = new YankiConnect();
+
+try {
+  // 2. Create a new card (note) using the strongly-typed note object
+  const noteId = await anki.note.addNote({
+    note: {
+      deckName: DECK_NAME,
+      modelName: 'Japanese sentences+',
+      fields: {
+        SentKanji: sentenceData.sentKanji,
+        SentFurigana: sentenceData.sentFurigana,
+        sentEng: sentenceData.sentEng,
+      },
+      tags: ['sentence-card-ai', AI_MODEL],
+    },
+  });
+
+  console.log(`Success! Card created with Note ID: ${noteId}`);
+} catch (error) {
+  // YankiConnect automatically extracts the API error string and throws it
+  console.error('Failed to add card:', error);
+}
