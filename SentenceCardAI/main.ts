@@ -24,7 +24,7 @@ const ai = new GoogleGenAI({
 const interaction = await ai.interactions.create({
   model: AI_MODEL,
   system_instruction: systemInstructions,
-  input: '学校',
+  input: '勇気 - courage, bravery',
   // TODO change thinking level? https://ai.google.dev/gemini-api/docs/text-generation
 });
 
@@ -49,6 +49,7 @@ if (!sentKanji || !sentFurigana || !sentEng) {
 const sentenceData: SentenceData = { sentKanji, sentFurigana, sentEng };
 
 console.log(sentenceData);
+console.log();
 
 const anki = new YankiConnect();
 
