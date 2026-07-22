@@ -1,3 +1,4 @@
 settings.local.json
 .yarn/
 node_modules/
+storyOutput/
