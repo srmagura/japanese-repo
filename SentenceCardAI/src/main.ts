@@ -1,8 +1,8 @@
 import { GoogleGenAI } from '@google/genai';
 import { readFile } from 'fs/promises';
-import os from 'os';
 import path from 'path';
 import { YankiConnect } from 'yanki-connect';
+import { apiKeys } from './apiKeys.js';
 
 // TODO Use 3.5-flash-lite?
 const AI_MODEL = 'gemini-3.6-flash';
@@ -12,14 +12,6 @@ const EPISODE = 's1e03'; // TODO make command line arg
 
 const vocabFilename = path.join(WORD_LIST_DIR, `${EPISODE}.txt`);
 const vocabFileContent = await readFile(vocabFilename, 'utf-8');
-
-interface ApiKeys {
-  gemini: string;
-}
-
-const apiKeys: ApiKeys = JSON.parse(
-  await readFile(path.join(os.homedir(), 'AI_API_KEYS.json'), 'utf-8'),
-);
 
 const systemInstructions = await readFile('SystemInstructions.md', 'utf-8');
 
