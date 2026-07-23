@@ -4,10 +4,10 @@ import path from 'path';
 import { apiKeys } from './apiKeys.ts';
 
 // Edit these each time
-const STORY_NAME = 'Angel Beats';
-const STORY_DESC = `Angel Beats fanfic`;
-const NUMBER_OF_CHAPTERS = 4;
-const CHAPTER_LENGTH = '125 - 225 words';
+const STORY_NAME = 'To LOVE-Ru';
+const STORY_DESC = `To LOVE-Ru fanfic with Yui and Haruna as Rito's main love interests`;
+const NUMBER_OF_CHAPTERS = 5;
+const CHAPTER_LENGTH = '200 - 325 words';
 
 const INSTRUCTIONS = `
 Write a story in Japanese. Use only N4 vocab or easier. No furigana, apart from the following exception.
