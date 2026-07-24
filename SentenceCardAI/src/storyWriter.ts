@@ -4,10 +4,10 @@ import path from 'path';
 import { apiKeys } from './apiKeys.ts';
 
 // Edit these each time
-const STORY_NAME = 'To LOVE-Ru';
-const STORY_DESC = `To LOVE-Ru fanfic with Yui and Haruna as Rito's main love interests`;
-const NUMBER_OF_CHAPTERS = 5;
-const CHAPTER_LENGTH = '200 - 325 words';
+const STORY_NAME = 'Charlotte';
+const STORY_DESC = `Fanfic of Charlotte (2015 anime)`;
+const NUMBER_OF_CHAPTERS = 7;
+const CHAPTER_LENGTH = '300 - 450 words';
 
 const INSTRUCTIONS = `
 Write a story in Japanese. Use only N4 vocab or easier. No furigana, apart from the following exception.
@@ -26,6 +26,8 @@ Chapter length: ${CHAPTER_LENGTH}
 const openai = new OpenAI({
   apiKey: apiKeys.openai,
 });
+
+const startTime = performance.now();
 
 const response = await openai.responses.create({
   model: 'gpt-5.6-luna',
@@ -56,3 +58,6 @@ fs.writeFileSync(filePath, response.output_text);
 console.log(
   `Wrote story to "${filename}" (${response.output_text.length} characters)`,
 );
+
+const elapsedSeconds = Math.round((performance.now() - startTime) / 1000);
+console.log(`Took ${elapsedSeconds} seconds`);
