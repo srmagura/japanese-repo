@@ -80,7 +80,7 @@ for (let i = 0; i < lines.length; i += linesPerWord) {
         fields: {
           SentKanji: sentenceData.sentKanji,
           SentFurigana: sentenceData.sentFurigana,
-          sentEng: sentenceData.sentEng,
+          SentEng: sentenceData.sentEng,
         },
         tags: ['sentence-card-ai', AI_MODEL],
       },

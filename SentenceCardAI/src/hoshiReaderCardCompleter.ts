@@ -19,11 +19,11 @@ const noteIds = await anki.note.findNotes({
   query: `"deck:Sentence Mining::Text Sentence Mining" tag:hoshi-reader-new`,
 });
 
-if (noteIds.length > 20) {
-  throw new Error(
-    'too many note ids (this can certainly be improved with batching)',
-  );
-}
+// if (noteIds.length > 20) {
+//   throw new Error(
+//     'too many note ids (this can certainly be improved with batching)',
+//   );
+// }
 
 const noteInfo = await anki.note.notesInfo({ notes: noteIds });
 
@@ -65,22 +65,23 @@ for (let i = 0; i < lines.length; i += linesPerWord) {
   console.log({ sentFurigana, sentEng });
 
   try {
-    // const noteId = await anki.note.addNote({
-    //   note: {
-    //     deckName: DECK_NAME,
-    //     modelName: 'Japanese sentences+',
-    //     fields: {
-    //       SentKanji: sentenceData.sentKanji,
-    //       SentFurigana: sentenceData.sentFurigana,
-    //       sentEng: sentenceData.sentEng,
-    //     },
-    //     tags: ['sentence-card-ai', AI_MODEL],
-    //   },
-    // });
-    // console.log(`Success! Card created with Note ID: ${noteId}`);
+    await anki.note.updateNoteFields({
+      note: {
+        id: noteIds[0]!,
+        fields: {
+          SentFurigana: sentFurigana,
+          SentEng: sentEng,
+        },
+      },
+    });
+    await anki.note.removeTags({
+      notes: [noteIds[0]!],
+      tags: 'hoshi-reader-new',
+    });
+    console.log(`Success! Updated Note ID: ${noteIds[0]}`);
   } catch (error) {
-    // YankiConnect automatically extracts the API error string and throws it
-    console.error('Failed to add card:', error);
+    console.error(`Updating Note ${noteIds[0]} failed:\n`);
+    throw error;
   }
 
   console.log();
