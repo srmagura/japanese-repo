@@ -16,22 +16,30 @@ const mkvFiles = files.filter(
 const srtFiles = files.filter(
   (file) => path.extname(file).toLowerCase() === ".srt",
 );
+const assFiles = files.filter(
+  (file) => path.extname(file).toLowerCase() === ".ass",
+);
 
-const count = Math.min(mkvFiles.length, srtFiles.length);
+function renameSubtitles(subtitleFiles) {
+  const count = Math.min(mkvFiles.length, subtitleFiles.length);
 
-for (let i = 0; i < count; i++) {
-  const mkvName = path.parse(mkvFiles[i]).name;
-  const srtFile = srtFiles[i];
-  const srtExt = path.extname(srtFile);
-  const newSrtName = `${mkvName}${srtExt}`;
+  for (let i = 0; i < count; i++) {
+    const mkvName = path.parse(mkvFiles[i]).name;
+    const subtitleFile = subtitleFiles[i];
+    const subtitleExt = path.extname(subtitleFile);
+    const newSubtitleName = `${mkvName}${subtitleExt}`;
 
-  if (srtFile === newSrtName) {
-    continue;
+    if (subtitleFile === newSubtitleName) {
+      continue;
+    }
+
+    fs.renameSync(
+      path.join(targetDir, subtitleFile),
+      path.join(targetDir, newSubtitleName),
+    );
+    console.log(`${subtitleFile}     ->     ${newSubtitleName}`);
   }
-
-  fs.renameSync(
-    path.join(targetDir, srtFile),
-    path.join(targetDir, newSrtName),
-  );
-  console.log(`${srtFile}     ->     ${newSrtName}`);
 }
+
+renameSubtitles(srtFiles);
+renameSubtitles(assFiles);
