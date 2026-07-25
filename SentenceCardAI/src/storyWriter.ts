@@ -4,15 +4,15 @@ import path from 'path';
 import { apiKeys } from './apiKeys.ts';
 
 // Edit these each time
-const STORY_NAME = 'Charlotte';
-const STORY_DESC = `Fanfic of Charlotte (2015 anime)`;
-const NUMBER_OF_CHAPTERS = 7;
+const STORY_NAME = 'Charlotte test 3';
+const STORY_DESC = `Fanfic of Charlotte (2015 anime), with at least 4 named characters`;
+const NUMBER_OF_CHAPTERS = 1;
 const CHAPTER_LENGTH = '300 - 450 words';
 
 const INSTRUCTIONS = `
-Write a story in Japanese. Use only N4 vocab or easier. No furigana, apart from the following exception.
+Write a story in Japanese. Use only N4 vocab or easier. No furigana.
 
-When a character's name first appears, show the hiragana for the name like this: 田中[たなか]春人[はると]は学生です
+For all character names, **only** use their given name. Write all character names in kana wrapped in a <span> tag. Examples: <span>はると</span>は学生です, <span>ジョン</span>は学生です
 
 The story may have multiple chapters.
 `.trim();
@@ -35,6 +35,17 @@ const response = await openai.responses.create({
   input: INPUT,
 });
 
+const STYLE_BLOCK = `<style>
+span {
+    color: #0000A3;
+}
+</style>`;
+
+// Regex targeting Unicode zero-width and invisible formatting characters - THANKS GPT
+const storyText = response.output_text.replace(/[\u200B-\u200D\uFEFF]/g, '');
+
+const markdownText = `${STYLE_BLOCK}\n\n${storyText}`;
+
 const now = new Date();
 const datetime = now
   .toLocaleString('en-US', {
@@ -53,11 +64,9 @@ const outputDir = path.join(import.meta.dirname, '..', 'storyOutput');
 const filename = `${STORY_NAME} ${datetime}.md`;
 const filePath = path.join(outputDir, filename);
 
-fs.writeFileSync(filePath, response.output_text);
+fs.writeFileSync(filePath, markdownText);
 
-console.log(
-  `Wrote story to "${filename}" (${response.output_text.length} characters)`,
-);
+console.log(`Wrote story to "${filename}" (${storyText.length} characters)`);
 
 const elapsedSeconds = Math.round((performance.now() - startTime) / 1000);
 console.log(`Took ${elapsedSeconds} seconds`);
