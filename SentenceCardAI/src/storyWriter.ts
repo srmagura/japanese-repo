@@ -4,9 +4,9 @@ import path from 'path';
 import { apiKeys } from './apiKeys.ts';
 
 // Edit these each time
-const STORY_NAME = 'Charlotte test 3';
-const STORY_DESC = `Fanfic of Charlotte (2015 anime), with at least 4 named characters`;
-const NUMBER_OF_CHAPTERS = 1;
+const STORY_NAME = 'Charlotte';
+const STORY_DESC = `Fanfic of Charlotte (2015 anime), where the main characters battle enemies in an alternate dimension`;
+const NUMBER_OF_CHAPTERS = 7;
 const CHAPTER_LENGTH = '300 - 450 words';
 
 const INSTRUCTIONS = `
