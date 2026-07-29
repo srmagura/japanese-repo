@@ -4,14 +4,23 @@ import path from 'path';
 import { apiKeys } from './apiKeys.ts';
 
 // Edit these each time
-const LEVEL = 'N4';
+const LEVEL = 'None';
 const STORY_NAME = `[${LEVEL}] Sound! Euphonium`;
 const STORY_DESC = `Fanfic of Sound! Euphonium (anime)`;
-const NUMBER_OF_CHAPTERS = 7;
+const NUMBER_OF_CHAPTERS = 2;
 const CHAPTER_LENGTH = '300 - 450 words';
 
+// const INSTRUCTIONS = `
+// Write a story in Japanese. Use only ${LEVEL} vocab or easier. No furigana.
+
+// For all character names, **only** use their given name. Write all character names in kana wrapped in a <span> tag. Examples: <span>はると</span>は学生です, <span>ジョン</span>は学生です
+
+// All narration and prose must be in short form (write だ instead of です).
+
+// The story may have multiple chapters.
+// `.trim();
 const INSTRUCTIONS = `
-Write a story in Japanese. Use only ${LEVEL} vocab or easier. No furigana.
+Write a story in Japanese.
 
 For all character names, **only** use their given name. Write all character names in kana wrapped in a <span> tag. Examples: <span>はると</span>は学生です, <span>ジョン</span>は学生です
 
