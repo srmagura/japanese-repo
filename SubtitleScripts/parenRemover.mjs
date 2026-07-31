@@ -4,7 +4,7 @@ import path from "path";
 const targetDir = process.argv[2];
 
 if (!targetDir) {
-  console.error("Usage: node subtitleParenRemover.mjs <targetDir>");
+  console.error("Usage: node parenRemover.mjs <targetDir>");
   process.exit(1);
 }
 

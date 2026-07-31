@@ -4,7 +4,7 @@ import path from "node:path";
 const targetDir = process.argv[2];
 
 if (!targetDir) {
-  console.error("Usage: node subtitleFileRenamer.mjs <targetDir>");
+  console.error("Usage: node fileRenamer.mjs <targetDir>");
   process.exit(1);
 }
 
