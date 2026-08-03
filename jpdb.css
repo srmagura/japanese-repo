@@ -1,4 +1,11 @@
-.sentence {
+.answer-box > .plain {
+  font-size: 3rem;
+  font-weight: 200;
+  font-family: "Noto Serif JP";
+}
+
+.answer-box .sentence {
+  font-size: 2rem;
   font-family: "Noto Serif JP";
 }
 
