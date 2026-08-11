@@ -21,21 +21,6 @@ const videoExtensions = [".mkv"];
 // subdirectories, so it only ever auto-loads the synced subtitles.
 const origDir = path.join(targetDir, "orig");
 
-if (fs.existsSync(origDir)) {
-  const existingOrig = fs
-    .readdirSync(origDir)
-    .filter((file) => file.endsWith(".srt"));
-
-  if (existingOrig.length > 0) {
-    console.error(
-      chalk.red(
-        `Aborting: ${existingOrig.length} .srt file(s) already exist in ${origDir}`,
-      ),
-    );
-    process.exit(1);
-  }
-}
-
 const entries = fs.readdirSync(targetDir);
 
 const srtFiles = entries.filter((file) => file.endsWith(".srt")).sort();
@@ -86,6 +71,7 @@ for (const srtFile of srtFiles) {
     console.log(
       chalk.red(`Failed to sync ${srtFile} (exit ${error.exitCode})`),
     );
+    console.log(chalk.red(error));
     process.exit(1);
   }
 }
