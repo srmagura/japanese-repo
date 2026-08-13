@@ -17,7 +17,7 @@ for (const file of assFiles) {
   const filePath = path.join(targetDir, file);
 
   const content = fs.readFileSync(filePath, "utf-8");
-  const cleaned = content.replace(/➡/g, "");
+  const cleaned = content.replace(/[➡≪≫＜＞]/g, "");
 
   fs.writeFileSync(filePath, cleaned, "utf-8");
 }
