@@ -17,9 +17,12 @@ for (const file of assFiles) {
   const filePath = path.join(targetDir, file);
 
   const content = fs.readFileSync(filePath, "utf-8");
-  const cleaned = content.replace(/[➡≪≫＜＞]/g, "");
+  const lines = content
+    .replace(/[➡≪≫＜＞]/g, "")
+    .split(/\r?\n/)
+    .filter((line) => !/♬～\s*$/.test(line));
 
-  fs.writeFileSync(filePath, cleaned, "utf-8");
+  fs.writeFileSync(filePath, lines.join("\n"), "utf-8");
 }
 
 console.log(assFiles.length);
