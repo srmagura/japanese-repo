@@ -1,0 +1,1 @@
+ffmpeg -i '[SavI0r] Gakkou Gurashi (School-Live!) - S01E01 - The Beginning [BD][1080p][AV1][OPUS][Dual Audio].mkv' -map 0:4 subs.srt

@@ -21,6 +21,7 @@ for (const file of srtFiles) {
   const content = fs.readFileSync(filePath, "utf-8");
   const lines = content
     .split(/\r?\n/)
+    .filter((line) => !/[）)]$/.test(line.trim()))
     .map((line) => line.replace(parenPattern, "").replace(/^[）)]+/, ""))
     .map((line) => line.replace(/<|(?<!--)>/g, ""));
 
